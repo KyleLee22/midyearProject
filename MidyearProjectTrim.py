@@ -1,5 +1,36 @@
 import random
 
+cash = 500
+inventory = []
+isDareDevil = "OFF"
+isMoney = "OFF"
+isRNG = "OFF"
+isFour = "SHOWN"
+isSix = "SHOWN"
+shopItems = ["\n\t1.) Daredevil Charm - $600", "\n\t2.) Money Charm - $600", "\n\t3.) RNG Charm - $600",
+             "\n\t4.) Game: Four Sided Dice Roll - $800", "\n\t5.) Game: Six Sided Dice Roll - $800"]
+
+
+def intro():
+    print(
+        "Life Coach: Welcome to life! Somehow, you have $500 with you. Most people start at with only $100, so consider yourself lucky...")
+    print(
+        "Anyway, this place can be a lot of fun, as long as you don't mess up and lose all of your money. Go ahead, choose something to do.")
+
+
+def menu():
+    print("\n\t1 - Play mini games\n\t2 - Shop for items\n\t3 - Settings")
+    choice = input("\nWhat would you like to do? ")
+    if choice == "1":
+        miniGames()
+    elif choice == "2":
+        shop(cash, shopItems)
+        shopChoice = input()
+    elif choice == "3":
+        settings()
+
+
+
 def miniGames():
     print("What game would you like to play?\n\n\t1 - Coin flipping\n\t2 - Rock Paper Scissors\n\t3 - Rock Paper Scissors Lizard Spock\n\t4 - Tic Tac Toe\n\t5 - One Hundred")
     gameChoice = input()
@@ -17,6 +48,82 @@ def miniGames():
         oneHundred()
     elif gameChoice.lower() == "back":
         menu()
+
+
+def shop(cash, shopItems, inventory):
+    avail = ["1", "2", "3", "4", "5"]
+    if len(shopItems) != 0:
+        print("What would you like to buy from the shop?")
+        for i in shopItems:
+            print(i)
+        buy = input("\nType no to leave. ")
+        while buy != "no":
+            if buy not in avail:
+                print("You already bought this item!")
+            if buy == "1" and cash >= 600 and buy in avail:
+                print("Purchase successful!")
+                shopItems.remove("\n\t1.) Daredevil Charm - $600")
+                inventory.append("Daredevil Charm")
+                avail.remove("1")
+                for i in shopItems:
+                    print(i)
+            elif buy == "1" and cash < 600 and buy in avail:
+                print("Not enough money.")
+            if buy == "2" and cash >= 600 and buy in avail:
+                print("Purchase successful!")
+                shopItems.remove("\n\t2.) Money Charm - $600")
+                inventory.append("Money Charm")
+                avail.remove("2")
+                for i in shopItems:
+                    print(i)
+            elif buy == "2" and cash < 600 and buy in avail:
+                print("Not enough money.")
+            if buy == "3" and cash >= 600 and buy in avail:
+                print("Purchase successful!")
+                shopItems.remove("\n\t3.) RNG Charm - $600")
+                inventory.append("RNG Charm")
+                avail.remove("3")
+                for i in shopItems:
+                    print(i)
+            elif buy == "3" and cash < 600 and buy in avail:
+                print("Not enough money.")
+            if buy == "4" and cash >= 800 and buy in avail:
+                print("Purchase successful!")
+                shopItems.remove("\n\t4.) Game: Four Sided Dice Roll - $800")
+                inventory.append("Four Sided Dice Roll")
+                avail.remove("4")
+                for i in shopItems:
+                    print(i)
+            elif buy == "4" and cash < 800 and buy in avail:
+                print("Not enough money.")
+            if buy == "5" and cash >= 800 and buy in avail:
+                print("Purchase successful!")
+                shopItems.remove("\n\t5.) Game: Six Sided Dice Roll - $800")
+                inventory.append("Six Sided Dice Roll")
+                avail.remove("5")
+                for i in shopItems:
+                    print(i)
+            elif buy == "5" and cash < 800 and buy in avail:
+                print("Not enough money.")
+            if len(shopItems) == 0:
+                print("There is nothing left to buy.")
+
+            buy = input("\nAnything else? Type no to leave. ")
+    menu()
+
+
+def settings(inventory, isDaredevil, isRNG, isMoney, isFour, isSix):
+    if "Daredevil Charm" in inventory:
+        print("Daredevil Charm - OFF")
+    if "Money Charm" in inventory:
+        print("Money Charm - OFF")
+    if "RNG Charm" in inventory:
+        print("RNG Charm - OFF")
+    if "Four Sided Dice" in inventory:
+        print("Four Sided Dice - Shown")
+    if "Six Sided Dice" in inventory:
+        print("Six Sided Dice - Shown")
+
 
 def cF():
     coin = random.randint(0, 1)
@@ -39,6 +146,7 @@ def cF():
         cF(cash)
     if cfAgain == "no":
         miniGames()
+
 
 def rPS():
     battle = random.randint(0, 2)
@@ -85,6 +193,7 @@ def rPS():
         rPS(cash)
     if rpsAgain == "no":
         miniGames()
+
 
 def rPSLSp():
     battle = random.randint(0, 4)
@@ -152,6 +261,7 @@ def rPSLSp():
         rPSLSp()
     if rpsAgain == "no":
         miniGames()
+
 
 def oneHundred():
     turn = random.randint(0, 1)
@@ -221,6 +331,7 @@ def oneHundred():
         oneHundred(cash)
     if ohAgain == "no":
         miniGames()
+
 
 def tTT():
     turn = random.randint(0, 1)
@@ -977,5 +1088,10 @@ def tTT():
         tTT(cash)
     if tttAgain.lower() == "no":
         miniGames()
+
+
+def main():
+    intro()
+    menu()
 
 miniGames()
