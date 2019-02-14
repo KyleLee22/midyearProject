@@ -36,7 +36,7 @@ def cF():
     while cfAgain.lower() != "yes" and cfAgain.lower() != "no":
         cfAgain = input("Invalid answer. Please try again. ")
     while cfAgain.lower() == "yes":
-        cF(cash)
+        cF()
     if cfAgain == "no":
         miniGames()
 
@@ -47,42 +47,27 @@ def rPS():
         rpsChoice = input("Invalid answer. Please try again. ")
     if rpsChoice.lower() == "rock" and battle == 0:
         print("You both chose rock. It's a tie.")
-        print("Cash:", cash)
     elif rpsChoice.lower() == "rock" and battle == 1:
         print("The computer chose paper. You lose.")
-        cash -= random.randint(1, 10)
-        print("Cash:", cash)
     elif rpsChoice.lower() == "rock" and battle == 2:
         print("The computer chose scissors. You win!")
-        cash += random.randint(1, 10)
-        print("Cash:", cash)
     elif rpsChoice.lower() == "paper" and battle == 0:
         print("The computer chose rock. You win!")
-        cash += random.randint(1, 10)
-        print("Cash:", cash)
     elif rpsChoice.lower() == "paper" and battle == 1:
         print("You both chose paper. It's a tie.")
-        print("Cash:", cash)
     elif rpsChoice.lower() == "paper" and battle == 2:
         print("The computer chose scissors. You lose.")
-        cash -= random.randint(1, 10)
-        print("Cash:", cash)
     elif rpsChoice.lower() == "scissors" and battle == 0:
         print("The computer chose rock. You lose.")
-        cash -= random.randint(1, 10)
-        print("Cash:", cash)
     elif rpsChoice.lower() == "scissors" and battle == 1:
         print("The computer chose paper. You win!")
-        cash += random.randint(1, 5)
-        print("Cash:", cash)
     elif rpsChoice.lower() == "scissors" and battle == 2:
         print("You both chose scissors. It's a tie.")
-        print("Cash:", cash)
     rpsAgain = input("Again? ")
     while rpsAgain.lower() != "yes" and rpsAgain.lower() != "no":
         rpsAgain = input("Invalid answer. Please try again. ")
     while rpsAgain.lower() == "yes":
-        rPS(cash)
+        rPS()
     if rpsAgain == "no":
         miniGames()
 
@@ -169,10 +154,10 @@ def oneHundred():
             if sumNum < 100:
                 cTurn = 0
                 comChoice = random.randint(1, 10)
-                if sumNum < 89 and sumNum > 78 and faith == 1:
+                if sumNum < 89 and sumNum > 78:
                     faith = random.randint(1, 3)
                     sumNum += (89 - sumNum)
-                elif sumNum > 89 and faith == 1:
+                elif sumNum > 89:
                     faith = random.randint(1, 3)
                     sumNum += (100 - sumNum)
                 else:
@@ -218,7 +203,7 @@ def oneHundred():
     while ohAgain.lower() != "yes" and ohAgain.lower() != "no":
         ohAgain = input("Invalid answer. Please try again. ")
     while ohAgain.lower() == "yes":
-        oneHundred(cash)
+        oneHundred()
     if ohAgain == "no":
         miniGames()
 
@@ -824,7 +809,7 @@ def tTT():
                 print("You lose.")
             if isDone == 0:
                 # 7
-                userChoice = input("Which section would you like to fill in?4 ")
+                userChoice = input("Which section would you like to fill in? ")
                 while userChoice in archived or (userChoice != "1" and userChoice != "2" and userChoice != "3" and
                                                  userChoice != "4" and userChoice != "5" and userChoice != "6" and
                                                  userChoice != "7" and userChoice != "8" and userChoice != "9"):
@@ -974,7 +959,7 @@ def tTT():
     while tttAgain.lower() != "yes" and tttAgain.lower() != "no":
         tttAgain = input("Invalid answer. Please try again. ")
     while tttAgain.lower() == "yes":
-        tTT(cash)
+        tTT()
     if tttAgain.lower() == "no":
         miniGames()
 
